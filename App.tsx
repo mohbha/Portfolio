@@ -16,18 +16,15 @@ const App: React.FC = () => {
         return <Dashboard setView={setView} />;
       case 'projects':
         return (
-          <div className="space-y-8">
-             <div className="flex flex-col md:flex-row justify-between items-end gap-4 border-b border-white/10 pb-6">
-                <div>
-                   <h2 className="text-3xl font-bold text-white mb-2">Projects Archive</h2>
-                   <p className="text-nexus-muted">A collection of experiments, products, and open source contributions.</p>
-                </div>
-                <div className="font-mono text-xs text-nexus-accent border border-nexus-accent/30 px-3 py-1 rounded-full bg-nexus-accent/5">
-                   TOTAL: {PROJECTS.length < 10 ? `0${PROJECTS.length}` : PROJECTS.length}
-                </div>
+          <div className="space-y-12 py-8">
+             <div className="text-center space-y-4">
+                <h2 className="text-4xl font-bold text-white tracking-tight">Project Archive</h2>
+                <p className="text-ios-subtext max-w-lg mx-auto">
+                   A selection of work demonstrating capabilities in Full Stack Development and Infrastructure.
+                </p>
              </div>
              
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
               {PROJECTS.map(project => (
                 <ProjectCard key={project.id} project={project} />
               ))}
@@ -37,7 +34,15 @@ const App: React.FC = () => {
       case 'timeline':
         return <Timeline />;
       case 'chat':
-        return <ChatInterface />;
+        return (
+           <div className="py-8">
+              <div className="text-center mb-8">
+                 <h2 className="text-3xl font-bold text-white mb-2">Interactive AI</h2>
+                 <p className="text-ios-subtext">Powered by Gemini. Ask about my skills.</p>
+              </div>
+              <ChatInterface />
+           </div>
+        );
       default:
         return <Dashboard setView={setView} />;
     }

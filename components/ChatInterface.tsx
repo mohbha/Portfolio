@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { sendMessageToGemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
-import { Send, Bot, User, Sparkles, AlertCircle } from 'lucide-react';
+import { ArrowUp, Sparkles, Bot } from 'lucide-react';
 import { USER_PROFILE } from '../data';
 
 export const ChatInterface: React.FC = () => {
@@ -9,7 +9,7 @@ export const ChatInterface: React.FC = () => {
     {
       id: 'welcome',
       role: 'model',
-      text: `System initialized. I am Nexus, the digital assistant for ${USER_PROFILE.name}. Ask me about skills, projects, or work history.`,
+      text: `Hello. I can tell you about ${USER_PROFILE.name}'s experience with Exchange Servers, AWS, or Java. What would you like to know?`,
       timestamp: new Date()
     }
   ]);
@@ -57,95 +57,66 @@ export const ChatInterface: React.FC = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-8rem)] max-w-4xl mx-auto flex flex-col glass-panel rounded-2xl overflow-hidden border border-nexus-accent/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+    <div className="max-w-2xl mx-auto h-[600px] flex flex-col bg-ios-card rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
       
       {/* Header */}
-      <div className="p-4 border-b border-white/10 bg-nexus-900/50 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="font-mono text-sm tracking-widest text-nexus-accent">ORACLE.SYS // CONNECTED</span>
+      <div className="p-4 bg-white/5 backdrop-blur-md border-b border-white/5 flex items-center justify-center relative">
+        <div className="text-sm font-semibold text-white flex items-center gap-2">
+          <Sparkles size={14} className="text-ios-blue" />
+          Assistant
         </div>
-        {!process.env.API_KEY && (
-           <div className="flex items-center gap-2 text-amber-500 text-xs">
-             <AlertCircle size={14} />
-             <span>DEMO MODE (No API Key)</span>
-           </div>
-        )}
       </div>
 
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-black/50">
         {messages.map((msg) => (
           <div 
             key={msg.id} 
-            className={`flex gap-4 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
-            {msg.role === 'model' && (
-              <div className="w-8 h-8 rounded-lg bg-nexus-secondary/20 flex items-center justify-center border border-nexus-secondary/50 flex-shrink-0">
-                <Bot size={18} className="text-nexus-secondary" />
-              </div>
-            )}
-            
-            <div className={`max-w-[80%] md:max-w-[70%] p-4 rounded-xl text-sm leading-relaxed
-              ${msg.role === 'user' 
-                ? 'bg-nexus-accent/10 border border-nexus-accent/20 text-white rounded-tr-none' 
-                : 'bg-white/5 border border-white/10 text-nexus-text rounded-tl-none'
-              }`}
+            <div 
+              className={`max-w-[80%] px-5 py-3 rounded-2xl text-[15px] leading-relaxed
+                ${msg.role === 'user' 
+                  ? 'bg-ios-blue text-white rounded-br-none' 
+                  : 'bg-[#2c2c2e] text-ios-text rounded-bl-none'
+                }`}
             >
               {msg.text}
-              <div className="mt-2 text-[10px] opacity-40 font-mono text-right">
-                {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-              </div>
             </div>
-
-            {msg.role === 'user' && (
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 flex-shrink-0">
-                <User size={18} className="text-white" />
-              </div>
-            )}
           </div>
         ))}
         
         {isLoading && (
-          <div className="flex gap-4">
-             <div className="w-8 h-8 rounded-lg bg-nexus-secondary/20 flex items-center justify-center border border-nexus-secondary/50 flex-shrink-0">
-                <Bot size={18} className="text-nexus-secondary" />
-              </div>
-              <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-xl rounded-tl-none flex items-center gap-2">
-                 <span className="w-1.5 h-1.5 bg-nexus-secondary rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                 <span className="w-1.5 h-1.5 bg-nexus-secondary rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                 <span className="w-1.5 h-1.5 bg-nexus-secondary rounded-full animate-bounce"></span>
-              </div>
+          <div className="flex justify-start">
+             <div className="bg-[#2c2c2e] px-5 py-4 rounded-2xl rounded-bl-none flex gap-1.5 items-center">
+               <span className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+               <span className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+               <span className="w-2 h-2 bg-white/40 rounded-full animate-bounce"></span>
+             </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area */}
-      <div className="p-4 md:p-6 bg-nexus-900/50 border-t border-white/10">
-        <form onSubmit={handleSend} className="relative group">
-          <div className="absolute inset-0 bg-nexus-accent/5 rounded-xl blur-md group-focus-within:bg-nexus-accent/10 transition-colors" />
+      {/* Input */}
+      <div className="p-4 bg-white/5 backdrop-blur-md border-t border-white/5">
+        <form onSubmit={handleSend} className="relative">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about my experience with React..."
-            className="w-full bg-nexus-800/80 border border-white/10 rounded-xl py-4 pl-5 pr-14 text-white placeholder-nexus-muted focus:outline-none focus:border-nexus-accent/50 focus:ring-1 focus:ring-nexus-accent/50 transition-all relative z-10"
+            placeholder="Ask anything..."
+            className="w-full bg-[#1c1c1e] text-white rounded-full py-3.5 pl-6 pr-12 focus:outline-none focus:ring-1 focus:ring-ios-blue/50 placeholder-neutral-500 text-sm"
             disabled={isLoading}
           />
           <button 
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-nexus-accent/10 rounded-lg text-nexus-accent hover:bg-nexus-accent hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed z-20"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-ios-blue rounded-full flex items-center justify-center text-white disabled:opacity-0 transition-opacity"
           >
-            {isLoading ? <Sparkles size={18} className="animate-spin" /> : <Send size={18} />}
+            <ArrowUp size={18} />
           </button>
         </form>
-        <div className="mt-2 text-center">
-            <span className="text-[10px] text-nexus-muted/50 font-mono">
-                AI can make mistakes. Please verify important information.
-            </span>
-        </div>
       </div>
     </div>
   );
