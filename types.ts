@@ -30,7 +30,7 @@ export interface SocialLink {
   icon: string;
 }
 
-export type ViewState = 'dashboard' | 'projects' | 'timeline' | 'chat';
+export type ViewState = 'dashboard' | 'projects' | 'timeline' | 'chat' | 'resume';
 
 export interface ChatMessage {
   id: string;

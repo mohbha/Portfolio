@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewState } from '../types';
-import { LayoutGrid, Layers, Clock, MessageSquare, Menu, X } from 'lucide-react';
+import { LayoutGrid, Layers, Clock, MessageSquare, Menu, X, FileText } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView }
     { id: 'dashboard', label: 'Overview' },
     { id: 'projects', label: 'Projects' },
     { id: 'timeline', label: 'Journey' },
+    { id: 'resume', label: 'Resume' },
     { id: 'chat', label: 'Ask AI' },
   ];
 

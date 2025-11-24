@@ -6,8 +6,13 @@ export const USER_PROFILE = {
   bio: "AWS-certified engineer with a strong foundation in Java & DSA. Currently managing enterprise infrastructure at PSB Bank while building deep expertise in Cloud, Networking, and Automation.",
   location: "Greater Noida, India",
   email: "mohbha123@gmail.com",
+  phone: "8700346932",
   availability: "Open to DevOps Roles",
-  avatarUrl: "https://avatars.githubusercontent.com/u/8700346932?v=4" // Placeholder logic, usually github avatar if username is known, using generic for now or the one provided in prompt if link existed. I'll use a generic tech avatar or if you have a specific URL replace it.
+  // Uses GitHub profile picture by default. 
+  // If you want a specific local photo, save it as 'mohan.jpg' in public/ folder and change this back to './mohan.jpg'
+  avatarUrl: "https://github.com/mohbha.png", 
+  githubUrl: "https://github.com/mohbha",
+  linkedinUrl: "https://www.linkedin.com/in/mohanjha321/"
 };
 
 export const SKILLS: Skill[] = [
@@ -53,26 +58,53 @@ export const EXPERIENCE: Experience[] = [
     id: "1",
     role: "Technical Specialist Trainee",
     company: "Noventiq (at PSB Bank)",
-    period: "Present",
-    description: "Managing on-prem Exchange Server & Active Directory. Handling mailbox provisioning, server health monitoring, and troubleshooting mail flow issues.",
+    period: "09/2025 - Present", // Adjusting based on CV "Deployed at PSB Bank"
+    description: "Managing on-prem Exchange Server & Active Directory. Handling mailbox provisioning, delegation, server health monitoring, and troubleshooting mail flow/headers.",
     skills: ["Exchange Server", "Active Directory", "Networking", "Troubleshooting"]
   },
   {
     id: "2",
     role: "Product Tester",
     company: "Nothing Technologies",
-    period: "Past",
-    description: "Conducted thorough product testing to ensure quality functionality. Identified bugs and contributed to user satisfaction improvements.",
+    period: "03/2024 - 08/2024",
+    description: "Conducted thorough product testing to ensure quality functionality. Identified and reported bugs contributing to product improvement and user satisfaction.",
     skills: ["QA Testing", "Bug Reporting", "Product Quality"]
   },
   {
     id: "3",
-    role: "Operations Assistant & Tutor",
+    role: "Home Tutor & Business Asst.",
     company: "Self-Employed",
-    period: "Past",
-    description: "Managed family business operations and provided academic tutoring. Funded personal EV purchase through independent work.",
+    period: "Previous",
+    description: "Assisted in daily operations of family business (sales, inventory). Tutored students and managed operations, funding personal EV purchase.",
     skills: ["Management", "Teaching", "Sales"]
   }
+];
+
+export const EDUCATION = [
+  {
+    degree: "B.Tech in Computer Science",
+    institution: "Galgotias University",
+    year: "2021-2025",
+    score: "8.45 CGPA"
+  }
+];
+
+export const CERTIFICATIONS = [
+  {
+    name: "AWS Academy Cloud Foundations",
+    issuer: "AWS Academy",
+    link: "https://www.credly.com/go/unTl23JZ"
+  },
+  {
+    name: "AWS Academy Cloud Architecting",
+    issuer: "AWS Academy",
+    link: "#"
+  }
+];
+
+export const ACHIEVEMENTS = [
+  "Participated in various hackathons and won multiple goodies.",
+  "Earned a Level 2 Badge in E-cell at Galgotias University."
 ];
 
 export const CURRENT_LEARNING = [

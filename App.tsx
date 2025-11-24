@@ -4,6 +4,7 @@ import { Dashboard } from './components/Dashboard';
 import { ProjectCard } from './components/ProjectCard';
 import { Timeline } from './components/Timeline';
 import { ChatInterface } from './components/ChatInterface';
+import { Resume } from './components/Resume';
 import { PROJECTS } from './data';
 import { ViewState } from './types';
 
@@ -33,6 +34,12 @@ const App: React.FC = () => {
         );
       case 'timeline':
         return <Timeline />;
+      case 'resume':
+        return (
+          <div className="py-8">
+            <Resume />
+          </div>
+        );
       case 'chat':
         return (
            <div className="py-8">
